@@ -7,8 +7,17 @@ const String fileHeader = """// GENERATED CODE - DO NOT MODIFY BY HAND
 
 const String rootFile = """
 
-RouteResult getRouteResult({String name, Map<String, dynamic> arguments}) {
-  switch (name) {
+RouteResult getRouteResult({String pageUrl, Map<String, String> routeArguments}) {
+  pageUrl = pageUrl ?? "";
+  routeArguments = routeArguments ?? {};
+  Uri uri = Uri.parse(pageUrl);
+  Map<String, String> urlArguments = uri.queryParameters;
+  Map<String, String> arguments = {};
+  urlArguments.isNotEmpty
+      ? arguments.addAll(urlArguments)
+      : arguments.addAll(routeArguments);
+  String routeUrl = uri.scheme + "://" + uri.host + uri.path;
+  switch (routeUrl) {
 {0}   default:
       return RouteResult();
   }

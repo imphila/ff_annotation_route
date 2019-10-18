@@ -72,7 +72,7 @@ class RouteGenerator {
 
                 String name = "";
 
-                List<String> argumentNames;
+                String argumentMapName;
 
                 bool showStatusBar;
 
@@ -87,10 +87,10 @@ class RouteGenerator {
                     var key = item.name.toSource();
                     if (key == "name:") {
                       name = item.expression.toSource();
-                    } else if (key == "argumentNames:") {
-                      var list =
-                          json.decode(item.expression.toSource()) as List;
-                      argumentNames = list.map((f) => f.toString()).toList();
+                    } else if (key == "argumentMapName:") {
+                      var argumentName =
+                          json.decode(item.expression.toSource()) as String;
+                      argumentMapName = argumentName;
                     } else if (key == "showStatusBar:") {
                       showStatusBar = item.expression.toSource() == "true";
                     } else if (key == "routeName:") {
@@ -109,7 +109,7 @@ class RouteGenerator {
                     className: className,
                     ffRoute: FFRoute(
                         name: name,
-                        argumentNames: argumentNames,
+                        argumentMapName: argumentMapName,
                         showStatusBar: showStatusBar,
                         routeName: routeName,
                         pageRouteType: pageRouteType,

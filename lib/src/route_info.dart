@@ -7,10 +7,10 @@ class RouteInfo {
 
   String get ctor {
     var params = "";
-    if (ffRoute.argumentNames != null && ffRoute.argumentNames.isNotEmpty) {
-      for (var key in ffRoute.argumentNames) {
-        params += "$key:arguments['$key'],";
-      }
+    if (ffRoute.argumentMapName != null && ffRoute.argumentMapName.isNotEmpty) {
+      var key = ffRoute.argumentMapName;
+      params = "$key: arguments";
+
     }
 
     return "$className($params)";
