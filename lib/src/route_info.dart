@@ -6,14 +6,14 @@ class RouteInfo {
   RouteInfo({this.ffRoute, this.className});
 
   String get ctor {
-    var params = "";
-    if (ffRoute.argumentMapName != null && ffRoute.argumentMapName.isNotEmpty) {
-      var key = ffRoute.argumentMapName;
-      params = "$key: arguments";
+    // var params = "";
+    // if (ffRoute.argumentMapName != null && ffRoute.argumentMapName.isNotEmpty) {
+    //   var key = ffRoute.argumentMapName;
+    //   params = "$key: arguments";
 
-    }
+    // }
 
-    return "$className($params)";
+    return "$className()";
   }
 
   String get caseString {

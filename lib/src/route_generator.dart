@@ -109,7 +109,6 @@ class RouteGenerator {
                     className: className,
                     ffRoute: FFRoute(
                         name: name,
-                        argumentMapName: argumentMapName,
                         showStatusBar: showStatusBar,
                         routeName: routeName,
                         pageRouteType: pageRouteType,

@@ -7,9 +7,6 @@ class FFRoute {
   /// If null, the route is anonymous.
   final String name;
 
-  /// The argument names passed to  FFRoute.
-  final String argumentMapName;
-
   /// Whether show status bar.
   final bool showStatusBar;
 
@@ -24,7 +21,6 @@ class FFRoute {
 
   const FFRoute(
       {String name,
-      this.argumentMapName,
       this.showStatusBar = true,
       this.routeName = '',
       this.pageRouteType,
