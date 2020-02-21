@@ -138,7 +138,6 @@ Widget _defaultTransitionsBuilder(
 Route<dynamic> onGenerateRouteHelper(RouteSettings settings, {Widget notFoundFallback}) {
   final routeResult = getRouteResult(
     pageUrl: settings.name,
-    arguments: settings.arguments,
   );
   if (routeResult.showStatusBar != null || routeResult.routeName != null) {
     settings = FFRouteSettings(
