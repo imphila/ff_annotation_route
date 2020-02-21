@@ -1,11 +1,14 @@
-/// annotation to generate route
-///
-///
+/// Annotation to generate route
+import 'package:meta/meta.dart';
+
 class FFRoute {
   /// The name of the route (e.g., "/settings").
   ///
   /// If null, the route is anonymous.
   final String name;
+
+  /// The argument names passed to  FFRoute.
+  final List<String> argumentNames;
 
   /// Whether show status bar.
   final bool showStatusBar;
@@ -19,14 +22,19 @@ class FFRoute {
   /// The description of route
   final String description;
 
-  const FFRoute(
-      {String name,
-      this.showStatusBar = true,
-      this.routeName = '',
-      this.pageRouteType,
-      this.description = ''})
-      : assert(name != null),
-        this.name = name;
+  const FFRoute({
+    @required this.name,
+    this.argumentNames,
+    this.showStatusBar = true,
+    this.routeName = '',
+    this.pageRouteType,
+    this.description = '',
+  }) : assert(name != null);
+
+  @override
+  String toString() {
+    return 'FFRoute{name: $name, argumentNames: $argumentNames, showStatusBar: $showStatusBar, routeName: $routeName, pageRouteType: $pageRouteType, description: $description}';
+  }
 }
 
 enum PageRouteType { material, cupertino, transparent }

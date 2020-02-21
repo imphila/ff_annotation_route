@@ -2,11 +2,11 @@
 
 [![pub package](https://img.shields.io/pub/v/ff_annotation_route.svg)](https://pub.dartlang.org/packages/ff_annotation_route) [![GitHub stars](https://img.shields.io/github/stars/fluttercandies/ff_annotation_route)](https://github.com/fluttercandies/ff_annotation_route/stargazers) [![GitHub forks](https://img.shields.io/github/forks/fluttercandies/ff_annotation_route)](https://github.com/fluttercandies/ff_annotation_route/network)  [![GitHub license](https://img.shields.io/github/license/fluttercandies/ff_annotation_route)](https://github.com/fluttercandies/ff_annotation_route/blob/master/LICENSE)  [![GitHub issues](https://img.shields.io/github/issues/fluttercandies/ff_annotation_route)](https://github.com/fluttercandies/ff_annotation_route/issues) <a target="_blank" href="https://jq.qq.com/?_wv=1027&k=5bcc0gy"><img border="0" src="https://pub.idqqimg.com/wpa/images/group.png" alt="flutter-candies" title="flutter-candies"></a>
 
-Language: [English](README.md) | [中文简体](README-ZH.md)
+Languages: [English](README.md) | [中文简体](README-ZH.md)
 
 ## Description
 
-Provide route generator to create route map quickly by annotations.
+Provide a route generator to create route map quickly by annotations.
 
 - [ff_annotation_route](#ffannotationroute)
   - [Description](#description)
@@ -29,13 +29,13 @@ Provide route generator to create route map quickly by annotations.
 ## Usage
 
 ### Add packages to dev_dependencies
-add packages to dev_dependencies in your project/packages's pubspec.yaml  
+Add the package to `dev_dependencies` in your project/packages's `pubspec.yaml`  
 ```yaml
 dev_dependencies:
-  ff_annotation_route: any
+  ff_annotation_route: latest-version
 ```
 
-download with `flutter packages get` 
+Download with `flutter packages get` 
 
 ### Add annotation
 
@@ -50,7 +50,7 @@ import 'package:ff_annotation_route/ff_annotation_route.dart';
 )
 class MainPage extends StatelessWidget 
 {
-      // ...
+  // ...
 }
 
 ```
@@ -58,73 +58,76 @@ class MainPage extends StatelessWidget
 
 ```dart
 import 'package:ff_annotation_route/ff_annotation_route.dart';
+
 @FFRoute(
-    name: "fluttercandies://picswiper",
-    routeName: "PicSwiper",
-    argumentNames: ["index", "pics"],
-    showStatusBar: false,
-    pageRouteType: PageRouteType.transparent)
+  name: "fluttercandies://picswiper",
+  routeName: "PicSwiper",
+  argumentNames: ["index", "pics"],
+  showStatusBar: false,
+  pageRouteType: PageRouteType.transparent,
+)
 class PicSwiper extends StatefulWidget {
   final int index;
   final List<PicSwiperItem> pics;
   PicSwiper({this.index, this.pics});
-        // ...
-  }
+  // ...
+}
 ```  
 #### FFRoute
 
-| parameter     | description                                              | default  |
-| ------------- | -------------------------------------------------------- | -------- |
-| name          | The name of the route (e.g., "/settings").               | required |
-| argumentNames | The argument names passed to  FFRoute.                   | -        |
-| showStatusBar | Whether show status bar.                                 | true     |
-| routeName     | The route name to track page                             | ''       |
-| pageRouteType | The type of page route(material, cupertino, transparent) | -        |
-| description   | The description of route                                 | ''       |
+| Parameter     | Description                                                          | Default  |
+| ------------- | -------------------------------------------------------------------- | -------- |
+| name          | The name of the route (e.g., "/settings").                           | required |
+| argumentNames | Arguments name passed to `FFRoute`. Pass with double quote (") only. | -        |
+| showStatusBar | Whether to show the status bar.                                      | true     |
+| routeName     | The route name to track page.                                        | ''       |
+| pageRouteType | The type of page route.(material, cupertino, transparent)            | -        |
+| description   | The description of the route.                                        | ''       |
 
 
 ### Generate Route File
 
 #### Environment
 
-add dart bin into to your `$PATH`.
+Add dart bin into to your `$PATH`.
 
 `cache\dart-sdk\bin` 
 
-[`more info `](https://dart.dev/tools/pub/cmd/pub-global)
+[`More info`](https://dart.dev/tools/pub/cmd/pub-global)
 
 
-#### Activate
+#### Activate the plugin
 
 `pub global activate ff_annotation_route`
 
 
 #### Execute command
 
-you can cd to your project and exectue command.
+Go to your project's root path and execute command.
 `ff_annotation_route`
 
-or you can exectue command with your project path
-`ff_annotation_route path=`
+Or you can execute command with your project path `ff_annotation_route
+path=`
 
 #### Command Parameter
 
-use as parameter=xxx, and use space to split them.
+Using with `parameter=xxx`, and use the space(` `) to split.
 
-| parameter                | description                                                                                                                                                                          | default |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| path                     | The path of your project.                                                                                                                                                            | current |
-| generateRouteNames       | Whether generate route names in xxx_route.dart at root project                                                                                                                       | false   |
-| mode                     | 0 or 1, 1 will generate xxx_route_helper.dart to help you to handle showStatusBar/routeName/pageRouteType                                                                            | 0       |
-| routeSettingsNoArguments | if true, FFRouteSettings(in xxx_route_helper.dart) has no arguments for low flutter sdk                                                                                              | false   |
+| Parameter                | Description                                                                                                       | Default |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------- | ------- |
+| path                     | The path of your project.                                                                                         | current |
+| mode                     | `0` or `1`, `1` will generate xxx_route_helper.dart to help you to handle showStatusBar/routeName/pageRouteType   | 0       |
+| generateRouteNames       | Whether to generate route names in `xxx_route.dart` at root project.                                              | false   |
+| generateRouteConstants   | Whether to generate route constants in `xxx_route.dart` at root project, with a class named `Routes`.             | false   |
+| routeSettingsNoArguments | if `true`, `FFRouteSettings(in xxx_route_helper.dart)` has no arguments for lower flutter sdk.                    | false   |
 
 ### Main.dart
 
-- if you exectue command with mode=1, FFNavigatorObserver/FFRouteSettings will generate in xxx_route_helper.dart
-they help you to track page or change status bar state.
+- If you execute command with `mode=1`, `FFNavigatorObserver/FFRouteSettings` will generate in `xxx_route_helper.dart`
+which help you to track page or change status bar state.
 
-- if you exectue command with mode=1, FFTransparentPageRoute will generate in xxx_route_helper.dart
-it helps you to push a transparent page route.
+- If you execute command with `mode=1`, `FFTransparentPageRoute` will generate in `xxx_route_helper.dart`
+which helps you to push a transparent page route.
 
 ```dart
 Widget build(BuildContext context) {
@@ -135,15 +138,24 @@ Widget build(BuildContext context) {
         primarySwatch: Colors.blue,
       ),
       navigatorObservers: [
-        FFNavigatorObserver(routeChange: (name) {
+        FFNavigatorObserver(routeChange:
+            (RouteSettings newRouteSettings, RouteSettings oldRouteSettings) {
           //you can track page here
-          print(name);
-        }, showStatusBarChange: (bool showStatusBar) {
-          if (showStatusBar) {
-            SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
-            SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
-          } else {
-            SystemChrome.setEnabledSystemUIOverlays([]);
+          print(
+              "route change: ${oldRouteSettings?.name} => ${newRouteSettings?.name}");
+          if (newRouteSettings is FFRouteSettings &&
+              oldRouteSettings is FFRouteSettings) {
+            if (newRouteSettings?.showStatusBar !=
+                oldRouteSettings?.showStatusBar) {
+              if (newRouteSettings?.showStatusBar == true) {
+                SystemChrome.setEnabledSystemUIOverlays(
+                    SystemUiOverlay.values);
+                SystemChrome.setSystemUIOverlayStyle(
+                    SystemUiOverlayStyle.dark);
+              } else {
+                SystemChrome.setEnabledSystemUIOverlays([]);
+              }
+            }
           }
         })
       ],
@@ -157,65 +169,36 @@ Widget build(BuildContext context) {
           child: w,
         );
       },
-      initialRoute: "fluttercandies://mainpage",
-      onGenerateRoute: (RouteSettings settings) {
-        var routeResult =
-            getRouteResult(name: settings.name, arguments: settings.arguments);
-
-        if (routeResult.showStatusBar != null ||
-            routeResult.routeName != null) {
-          settings = FFRouteSettings(
-              arguments: settings.arguments,
-              name: settings.name,
-              isInitialRoute: settings.isInitialRoute,
-              routeName: routeResult.routeName,
-              showStatusBar: routeResult.showStatusBar);
-        }
-
-        var page = routeResult.widget ?? NoRoute();
-
-        switch (routeResult.pageRouteType) {
-          case PageRouteType.material:
-            return MaterialPageRoute(settings: settings, builder: (c) => page);
-          case PageRouteType.cupertino:
-            return CupertinoPageRoute(settings: settings, builder: (c) => page);
-          case PageRouteType.transparent:
-            return FFTransparentPageRoute(
-                settings: settings,
-                pageBuilder: (BuildContext context, Animation<double> animation,
-                        Animation<double> secondaryAnimation) =>
-                    page);
-          default:
-            return Platform.isIOS
-                ? CupertinoPageRoute(settings: settings, builder: (c) => page)
-                : MaterialPageRoute(settings: settings, builder: (c) => page);
-        }
-      },
-    ));
-  }
+      initialRoute: Routes.FLUTTERCANDIES_MAINPAGE,// fluttercandies://mainpage
+      onGenerateRoute: (RouteSettings settings) =>
+          onGenerateRouteHelper(settings, notFoundFallback: NoRoute()),
+    ),
+  );
+}
 ```
 
-[more info](https://github.com/fluttercandies/ff_annotation_route/blob/master/example/lib/main.dart)
+[More info](https://github.com/fluttercandies/ff_annotation_route/blob/master/example/lib/main.dart)
 
 ### Push
 
 #### Push name
 
 ```dart
-  Navigator.pushNamed(context, "fluttercandies://mainpage");
+  Navigator.pushNamed(context, Routes.FLUTTERCANDIES_MAINPAGE /* fluttercandies://mainpage */);
 ```
 
 #### Push name with arguments
 
-and arguments should be Map<String,dynamic>
+`arguments` **MUST** be a `Map<String, dynamic>`
 ```dart
-   Navigator.pushNamed(context, "fluttercandies://picswiper",
-                arguments: {
-                  "index": index,
-                  "pics": listSourceRepository
-                      .map<PicSwiperItem>(
-                          (f) => PicSwiperItem(f.imageUrl, des: f.title))
-                      .toList(),
-                });
-
+  Navigator.pushNamed(
+    context,
+    Routes.FLUTTERCANDIES_PICSWIPER, // fluttercandies://picswiper
+    arguments: {
+      "index": index,
+      "pics": listSourceRepository
+          .map<PicSwiperItem>((f) => PicSwiperItem(f.imageUrl, des: f.title))
+          .toList(),
+    },
+  );
 ```

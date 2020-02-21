@@ -5,19 +5,27 @@ class RouteInfo {
   final FFRoute ffRoute;
   RouteInfo({this.ffRoute, this.className});
 
-  String get ctor {
-    // var params = "";
-    // if (ffRoute.argumentMapName != null && ffRoute.argumentMapName.isNotEmpty) {
-    //   var key = ffRoute.argumentMapName;
-    //   params = "$key: arguments";
+  String get constructor {
+    String params;
+    if (ffRoute.argumentNames != null && ffRoute.argumentNames.isNotEmpty) {
+      for (final key in ffRoute.argumentNames) {
+        params ??= '';
+        params += "$key:arguments['$key'],";
+      }
+    } else {
+      params = '';
+    }
 
-    // }
-
-    return "$className()";
+    return '$className($params)';
   }
 
   String get caseString {
     return """    case ${ffRoute.name}:
-      return RouteResult(widget: $ctor, ${ffRoute.showStatusBar != null ? 'showStatusBar: ${ffRoute.showStatusBar},' : ''} ${ffRoute.routeName != null ? 'routeName: ${ffRoute.routeName},' : ''} ${ffRoute.pageRouteType != null ? 'pageRouteType: ${ffRoute.pageRouteType},' : ''} ${ffRoute.description != null ? 'description: ${ffRoute.description},' : ''});\n""";
+      return RouteResult(widget: $constructor, ${ffRoute.showStatusBar != null ? 'showStatusBar: ${ffRoute.showStatusBar},' : ''} ${ffRoute.routeName != null ? 'routeName: ${ffRoute.routeName},' : ''} ${ffRoute.pageRouteType != null ? 'pageRouteType: ${ffRoute.pageRouteType},' : ''} ${ffRoute.description != null ? 'description: ${ffRoute.description},' : ''});\n""";
+  }
+
+  @override
+  String toString() {
+    return 'RouteInfo{className: $className, ffRoute: $ffRoute}';
   }
 }
