@@ -86,7 +86,7 @@ CompilationUnit _parseSource(
   final reader = CharSequenceReader(contents);
   final errorCollector = _ErrorCollector();
   final scanner = Scanner(source, reader, errorCollector)
-    ..configureFeatures(featureSet);
+    ..configureFeatures();
   final token = scanner.tokenize();
   final parser = Parser(source, errorCollector, featureSet: featureSet)
     ..parseFunctionBodies = parseFunctionBodies;
